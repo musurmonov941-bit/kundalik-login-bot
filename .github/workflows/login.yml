@@ -15,7 +15,7 @@ jobs:
           echo "${{ secrets.KUNDALIK_ACCOUNTS }}" | while IFS=: read login password
           do
             echo "Logging in $login"
-            curl -X POST https://kundalik.com/login \
+            curl -s -X POST https://kundalik.com/login \
               -d "login=$login" \
               -d "password=$password"
           done
