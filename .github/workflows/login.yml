@@ -1,0 +1,15 @@
+name: Kundalik Auto Login
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  login:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Open Kundalik
+        run: |
+          curl -X GET https://kundalik.com
