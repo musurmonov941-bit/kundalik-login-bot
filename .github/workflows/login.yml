@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Open Kundalik
+      - name: Login to Kundalik (32 accounts)
         run: |
-          curl -X GET https://kundalik.com
+          echo "${{ secrets.KUNDALIK_ACCOUNTS }}" | while IFS=: read login password
+          do
+            echo "Logging in $login"
+            curl -X POST https://kundalik.com/login \
+              -d "login=$login" \
+              -d "password=$password"
+          done
